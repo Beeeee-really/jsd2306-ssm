@@ -10,5 +10,13 @@ public class UserService {
     private String name;
     @Autowired
     private UserDao userDao;
-    
+
+
+    @Override
+    public String toString() {
+        return "UserService{" +
+                "name='" + name + '\'' +
+                ", userDao=" + userDao +
+                '}';
+    }
 }
