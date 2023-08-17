@@ -3,6 +3,8 @@ package cn.tedu._02mybatis.mapper;
 import cn.tedu._02mybatis.pojo.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 /**
  * Mapper为此接口创建实现类
