@@ -12,7 +12,7 @@ public class TestDBConnect {
         System.out.println("DBConnect:" + dBconnect);
         //关闭IoC容器:Bean对象被销毁
         context.close();//强行销毁
-        
+
 
 
     }
