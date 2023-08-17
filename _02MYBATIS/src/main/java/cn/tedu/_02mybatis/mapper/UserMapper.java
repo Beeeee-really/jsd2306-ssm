@@ -12,6 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Mapper
 public interface UserMapper {
     //1.插入一条数据
-    @Insert("USE blog;INSERT INTO user(username,password,nickname,created) VALUES(#{username},#{password},#{nickname},#{created});")
+    @Insert("INSERT INTO user(username,password,nickname,created) VALUES(#{username},#{password},#{nickname},#{created});")
     void insert(User user);
 }

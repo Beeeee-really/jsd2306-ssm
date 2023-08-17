@@ -32,6 +32,8 @@ class ApplicationTests {
         user.setNickname("222");
         user.setCreated(new Date());
 
+        userMapper.insert(user);
+
     }
 
 }
