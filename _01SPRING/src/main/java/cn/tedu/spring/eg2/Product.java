@@ -1,31 +1,36 @@
 package cn.tedu.spring.eg2;
 
+import cn.tedu.spring.example.User;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Component;
 
-@Controller
+@Component
 public class Product {
-    @Value("qwq")
     private String title;
-    @Value("1")
+    @Value("100")
     private Integer num;
-    @Value("sdsdd")
+    @Value("真好吃啊")
     private String comment;
 
-    void see(){
 
+    @Value("麻辣烫")
+    public void setTitle(String title) {
+        this.title = title;
     }
-
-
-
-
 
     @Override
     public String toString() {
         return "Product{" +
                 "title='" + title + '\'' +
-                ", num='" + num + '\'' +
+                ", num=" + num +
                 ", comment='" + comment + '\'' +
                 '}';
     }
 }
+
+
+
+
+
+
+

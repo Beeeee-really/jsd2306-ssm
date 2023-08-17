@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class UserController {
-    void login(){
-
+    public void login(){
+        System.out.println("登录功能");
     }
 }

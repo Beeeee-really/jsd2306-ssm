@@ -1,19 +1,15 @@
 package cn.tedu.spring.life;
 
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class TestDBConnect {
     public static void main(String[] args) {
-
-
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("cn.tedu.spring.life");
-        DBConnect dBconnect = context.getBean(DBConnect.class);
+        DBConnect dbConnect = context.getBean(DBConnect.class);
         //4.使用阶段
-        System.out.println("DBConnect:" + dBconnect);
-        //关闭IoC容器:Bean对象被销毁
-        context.close();//强行销毁
-
-
-
+        System.out.println("4:使用Spring Bean阶段");
+        //关闭IoC容器:Spring Bean对象销毁
+        context.close();
     }
 }
