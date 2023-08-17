@@ -5,5 +5,5 @@ import org.springframework.stereotype.Component;
 
 @Scope("prototype")
 @Component
-public class DBconnect {
+public class DBConnectScope {
 }

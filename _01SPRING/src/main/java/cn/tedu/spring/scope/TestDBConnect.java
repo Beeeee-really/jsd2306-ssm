@@ -7,10 +7,10 @@ public class TestDBConnect {
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext("cn.tedu.spring.scope");
         System.out.println("1");
-        DBconnect dBconnect1 = context.getBean(DBconnect.class);
+        DBConnectScope dBconnect1 = context.getBean(DBConnectScope.class);
         System.out.println(dBconnect1);
         System.out.println("2");
-        DBconnect dBconnect2 = context.getBean(DBconnect.class);
+        DBConnectScope dBconnect2 = context.getBean(DBConnectScope.class);
         System.out.println(dBconnect2);
     }
 }
