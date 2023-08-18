@@ -4,15 +4,16 @@ import cn.tedu._02mybatis.mapper.UserMapper;
 import cn.tedu._02mybatis.mapper.WeiboMapper;
 import cn.tedu._02mybatis.pojo.User;
 import cn.tedu._02mybatis.pojo.Weibo;
+import cn.tedu._02mybatis.pojo.WeiboIndexVO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Arrays;
 import java.util.Date;
 
 @SpringBootTest
 class ApplicationTests {
+
     @Test
     void contextLoads() {
     }
@@ -31,6 +32,7 @@ class ApplicationTests {
         user.setPassword("123456");
         user.setNickname("晶晶");
         user.setCreated(new Date());
+
         userMapper.insert(user);
     }
 
@@ -59,23 +61,46 @@ class ApplicationTests {
         System.out.println(weiboMapper.deleteWeiboById(205));
     }
 
+    /**
+     * 3.根据微博 id 修改微博测试
+     */
     @Test
-    void UpdateWeiBoByIdTest() {
+    void updateWeiboByIdTest() {
         Weibo weibo = new Weibo();
         weibo.setId(200);
-        weibo.setContent("111222333444555666777888999000");
+        weibo.setContent("风云际会潜水游");
         weibo.setCreated(new Date());
         weibo.setUserId(100);
-        System.out.println(weiboMapper.updateWeiBoById(weibo));
+        System.out.println(weiboMapper.updateWeiboById(weibo));
     }
 
+    /**
+     * 4.根据id查询1条微博数据:id content created user_id
+     */
     @Test
-    void SelectWeiBoByIdTest() {
-        System.out.println(weiboMapper.selectWeiBoById(200));
+    void selectWeiboByIdTest() {
+        System.out.println(weiboMapper.selectWeiboById(200));
     }
 
+    /**
+     * 5.根据用户id查询,该用户发过的所有的微博信息[id content created user_id]测试
+     */
     @Test
-    void SelectWeiBoByUserIdTest() {
-        System.out.println(weiboMapper.selectWeiBoByUserId(100));
+    void selectWeiboByUserIdTest() {
+        System.out.println(weiboMapper.selectWeiboByUserId(100));
+    }
+
+    /**
+     * 6.VO类:根据微博id,查询微博的 内容content 和 发布时间created 测试
+     */
+    @Test
+    void selectWeiboById2Test() {
+        System.out.println(weiboMapper.selectWeiboById2(200));
+    }
+
+
+    @Test
+    void selectWeiBoAllTest() {
+        System.out.println(weiboMapper.selectWeiBoAll());
     }
 }
