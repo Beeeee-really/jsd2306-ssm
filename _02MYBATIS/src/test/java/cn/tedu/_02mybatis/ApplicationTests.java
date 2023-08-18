@@ -1,7 +1,9 @@
 package cn.tedu._02mybatis;
 
+import cn.tedu._02mybatis.mapper.CommentMapper;
 import cn.tedu._02mybatis.mapper.UserMapper;
 import cn.tedu._02mybatis.mapper.WeiboMapper;
+import cn.tedu._02mybatis.pojo.Comment;
 import cn.tedu._02mybatis.pojo.User;
 import cn.tedu._02mybatis.pojo.Weibo;
 import cn.tedu._02mybatis.pojo.WeiboIndexVO;
@@ -103,4 +105,37 @@ class ApplicationTests {
     void selectWeiBoAllTest() {
         System.out.println(weiboMapper.selectWeiBoAll());
     }
+
+    @Autowired
+    private CommentMapper commentMapper;
+
+    @Test
+    void deleteCommentById() {
+        System.out.println(commentMapper.deleteCommentById(304));
+    }
+
+
+    @Test
+    void updateCommentByIdTest() {
+        Comment comment = new Comment();
+        comment.setContent("1111");
+        comment.setCreated(new Date());
+        comment.setUserId(12121);
+        comment.setWeiboId(3333);
+        comment.setId(303);
+        System.out.println(commentMapper.updateCommentById(comment));
+    }
+
+
+    @Test
+    void selectCommentByIdTest() {
+        System.out.println(commentMapper.selectCommentById(303));
+    }
+
+
+    @Test
+    void selectCommentAllByUserIdTest() {
+        System.out.println(commentMapper.selectCommentAllByUserId(100));
+    }
+
 }
