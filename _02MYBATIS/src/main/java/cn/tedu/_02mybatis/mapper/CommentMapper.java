@@ -12,19 +12,19 @@ import java.util.List;
 
 @Mapper
 public interface CommentMapper {
-    @Delete("DELETE FROM blog.comment WHERE id=#{id}")
+    //    @Delete("DELETE FROM blog.comment WHERE id=#{id}")
     int deleteCommentById(int id);
 
 
-    @Update("UPDATE blog.comment SET content=#{content},created=#{created},user_id=#{userId},weibo_id=#{weiboId} WHERE id=#{id}")
+    //    @Update("UPDATE blog.comment SET content=#{content},created=#{created},user_id=#{userId},weibo_id=#{weiboId} WHERE id=#{id}")
     int updateCommentById(Comment comment);
 
 
-    @Select("SELECT content,created,user_id userId FROM blog.comment WHERE id=#{id}")
+    //    @Select("SELECT content,created,user_id userId FROM blog.comment WHERE id=#{id}")
     CommentxVO selectCommentById(int id);
 
 
-    @Select("SELECT content,created,weibo_id weiboId from blog.comment WHERE user_id=#{userId}")
+    //    @Select("SELECT content,created,weibo_id weiboId from blog.comment WHERE user_id=#{userId}")
     List<CommentVO> selectCommentAllByUserId(int userId);
 
 

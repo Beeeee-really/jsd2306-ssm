@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserMapper {
     //1.插入1条数据
-    @Insert("INSERT INTO user(username,password,nickname,created) VALUES(#{username}, #{password}, #{nickname}, #{created})")
+//    @Insert("INSERT INTO user(username,password,nickname,created) VALUES(#{username}, #{password}, #{nickname}, #{created})")
     void insert(User user);
 }
 
