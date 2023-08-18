@@ -9,4 +9,6 @@
         INSERT INTO user(username, password, nickname, created)
         VALUES (#{username}, #{password}, #{nickname}, #{created})
     </insert>
+
+
 </mapper>
