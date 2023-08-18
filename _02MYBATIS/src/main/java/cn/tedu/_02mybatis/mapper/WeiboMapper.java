@@ -28,7 +28,7 @@ public interface WeiboMapper {
     @Update("UPDATE blog.weibo SET content=#{content} ,created=#{created},user_id=#{userId} WHERE id=#{id}")
     int updateWeiBoById(Weibo weibo);
 
-@Select("SELECT id,content,created,user_id userId FROM blog.weibo WHERE id=#{id}")
+    @Select("SELECT id,content,created,user_id userId FROM blog.weibo WHERE id=#{id}")
     Weibo selectWeiBoById(int id);
 
 
