@@ -25,7 +25,7 @@ class ApplicationTests {
      * 测试方法要求:无参无返回值
      */
     @Test
-    void insertTest(){
+    void insertTest() {
         User user = new User();
         user.setUsername("王克晶");
         user.setPassword("123456");
@@ -43,7 +43,7 @@ class ApplicationTests {
      * 1.微博表中插入1条数据的测试方法
      */
     @Test
-    void insertWeiboTest(){
+    void insertWeiboTest() {
         Weibo weibo = new Weibo();
         weibo.setContent("如果你为门中弟子伤她一分,我便屠你满门");
         weibo.setCreated(new Date());
@@ -56,8 +56,21 @@ class ApplicationTests {
      * 2.根据微博 id 删除1条数据测试
      */
     @Test
-    void deleteWeiboByIdTest(){
+    void deleteWeiboByIdTest() {
         System.out.println(weiboMapper.deleteWeiboById(205));
+    }
+
+
+    @Test
+    void UpdateWeiBoByIdTest() {
+        Weibo weibo = new Weibo();
+        weibo.setId(200);
+        weibo.setContent("111222333444555666777888999000");
+        weibo.setCreated(new Date());
+        weibo.setUserId(100);
+
+
+        System.out.println(weiboMapper.updateWeiBoById(weibo));
     }
 
 }
