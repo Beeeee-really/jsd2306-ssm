@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Arrays;
 import java.util.Date;
 
 @SpringBootTest
@@ -71,6 +72,14 @@ class ApplicationTests {
 
 
         System.out.println(weiboMapper.updateWeiBoById(weibo));
+    }
+
+
+
+
+    @Test
+    void SelectWeiBoByIdTest(){
+        System.out.println(weiboMapper.selectWeiBoById(200));
     }
 
 }
