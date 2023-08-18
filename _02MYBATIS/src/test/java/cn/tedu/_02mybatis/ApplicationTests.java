@@ -13,7 +13,6 @@ import java.util.Date;
 
 @SpringBootTest
 class ApplicationTests {
-
     @Test
     void contextLoads() {
     }
@@ -32,7 +31,6 @@ class ApplicationTests {
         user.setPassword("123456");
         user.setNickname("晶晶");
         user.setCreated(new Date());
-
         userMapper.insert(user);
     }
 
@@ -61,7 +59,6 @@ class ApplicationTests {
         System.out.println(weiboMapper.deleteWeiboById(205));
     }
 
-
     @Test
     void UpdateWeiBoByIdTest() {
         Weibo weibo = new Weibo();
@@ -69,17 +66,13 @@ class ApplicationTests {
         weibo.setContent("111222333444555666777888999000");
         weibo.setCreated(new Date());
         weibo.setUserId(100);
-
-
         System.out.println(weiboMapper.updateWeiBoById(weibo));
     }
-
 
     @Test
     void SelectWeiBoByIdTest() {
         System.out.println(weiboMapper.selectWeiBoById(200));
     }
-
 
     @Test
     void SelectWeiBoByUserIdTest() {
