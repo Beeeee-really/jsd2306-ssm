@@ -75,11 +75,14 @@ class ApplicationTests {
     }
 
 
-
-
     @Test
-    void SelectWeiBoByIdTest(){
+    void SelectWeiBoByIdTest() {
         System.out.println(weiboMapper.selectWeiBoById(200));
     }
 
+
+    @Test
+    void SelectWeiBoByUserIdTest() {
+        System.out.println(weiboMapper.selectWeiBoByUserId(100));
+    }
 }
