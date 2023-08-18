@@ -1,16 +1,14 @@
 package cn.tedu._02mybatis;
 
 import cn.tedu._02mybatis.mapper.UserMapper;
-import cn.tedu._02mybatis.mapper.WeiBoMapper;
+import cn.tedu._02mybatis.mapper.WeiboMapper;
 import cn.tedu._02mybatis.pojo.User;
-import cn.tedu._02mybatis.pojo.WeiBo;
+import cn.tedu._02mybatis.pojo.Weibo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Date;
-
-import static javax.swing.text.html.HTML.Tag.U;
 
 @SpringBootTest
 class ApplicationTests {
@@ -19,37 +17,47 @@ class ApplicationTests {
     void contextLoads() {
     }
 
+    // 自动装配
     @Autowired
     private UserMapper userMapper;
 
-
     /**
-     * 测试方法一定是无参无返回值
+     * 测试方法要求:无参无返回值
      */
     @Test
-    void insertTest() {
+    void insertTest(){
         User user = new User();
-        user.setUsername("awa");
-        user.setPassword("111");
-        user.setNickname("222");
+        user.setUsername("王克晶");
+        user.setPassword("123456");
+        user.setNickname("晶晶");
         user.setCreated(new Date());
 
         userMapper.insert(user);
-
     }
 
+    //自动装配
     @Autowired
-    private WeiBoMapper weiBoMapper;
+    private WeiboMapper weiboMapper;
 
+    /**
+     * 1.微博表中插入1条数据的测试方法
+     */
     @Test
-    void insertTest2(){
-        WeiBo weiBo = new WeiBo();
-        weiBo.setContent("111");
-        weiBo.setCreated(new Date());
-        weiBo.setUserId(111);
+    void insertWeiboTest(){
+        Weibo weibo = new Weibo();
+        weibo.setContent("如果你为门中弟子伤她一分,我便屠你满门");
+        weibo.setCreated(new Date());
+        weibo.setUserId(100);
+        //调用方法
+        System.out.println(weiboMapper.insertWeibo(weibo));
+    }
 
-        weiBoMapper.insert(weiBo);
-
+    /**
+     * 2.根据微博 id 删除1条数据测试
+     */
+    @Test
+    void deleteWeiboByIdTest(){
+        System.out.println(weiboMapper.deleteWeiboById(205));
     }
 
 }

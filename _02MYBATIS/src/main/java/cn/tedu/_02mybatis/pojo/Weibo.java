@@ -2,15 +2,20 @@ package cn.tedu._02mybatis.pojo;
 
 import java.util.Date;
 
-public class WeiBo {
+/**
+ * 微博实体类
+ */
+public class Weibo {
+    //微博ID 微博内容 发布时间 用户ID
     private Integer id;
     private String content;
     private Date created;
+    // userId和数据库表字段的名字不一致
     private Integer userId;
 
     @Override
     public String toString() {
-        return "WeiBo{" +
+        return "Weibo{" +
                 "id=" + id +
                 ", content='" + content + '\'' +
                 ", created=" + created +
