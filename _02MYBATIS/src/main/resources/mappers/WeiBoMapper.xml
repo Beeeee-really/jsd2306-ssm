@@ -5,6 +5,6 @@
 <mapper namespace="cn.tedu._02mybatis.mapper.WeiboMapper">
 <!--向weibo表中插入数据-->
     <insert id="insertWeiBo">
-        INSERT INTO 
+        INSERT INTO
     </insert>
 </mapper>
