@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="">
-
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace是一个名称空间-->
+<mapper namespace="cn.tedu._02mybatis.mapper.UserMapper">
+    <insert id="insert">
+#         插入一条数据
+        INSERT INTO user(username, password, nickname, created)
+        VALUES (#{username}, #{password}, #{nickname}, #{created})
+    </insert>
 </mapper>
