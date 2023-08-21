@@ -101,6 +101,17 @@
 
     <!--
         11. 查询指定用户id发的微博信息，要求显示：用户id、用户昵称、List集合中 List<Weibo>
+        1) <resultMap>标签：指定最终映射查询结果的VO类;
+        2) <id>标签：主键字段标签;
+        3) <result>标签：非主键字段标签;
+        4) <collection>标签：映射一对多查询中,多的一方的数据集合;
+        5) column属性：查询语句字段名;
+        6) property属性：VO类属性名;
+        7) <resultMap id="" type="">
+           type属性：指定查询结果最终映射的VO类;
+        8) <collection property="" ofType="">
+           property属性：指定VO类属性名;
+           ofType属性：指定一对多查询中,多的一方的集合中存放的相关类。
     -->
     <resultMap id="bbb" type="cn.tedu._02mybatis.pojo.WeiboMapVO2">
         <id column="uid" property="id"/>
