@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu.egmybatis2.mapper.CustomersMapper">
+    <insert id="insertCustomers">
+        INSERT INTO customers(cust_id, cust_tel, cust_name, address)
+        VALUES (#{custId}, #{custTel}, #{custName}, #{address})
+    </insert>
+
+    <select id="selectByCustId" resultType="cn.tedu.egmybatis2.pojo.entity.Customers">
+        SELECT cust_id custId, cust_tel custTel, cust_name custName, address
+        FROM mybatisdb.customers
+        WHERE cust_id = #{custId}
+    </select>
+
+    <select id="selectAll" resultType="cn.tedu.egmybatis2.pojo.entity.Customers">
+        SELECT cust_id custId, cust_tel custTel, cust_name custName, address
+        FROM mybatisdb.customers
+    </select>
+
+    <select id="selectByCity" resultType="cn.tedu.egmybatis2.pojo.entity.Customers">
+        SELECT cust_id custId, cust_tel custTel, cust_name custName, address
+        FROM mybatisdb.customers
+        WHERE address = #{address}
+    </select>
+
+    <select id="selectByAddress" resultType="cn.tedu.egmybatis2.pojo.vo.CustomersVO">
+        SELECT cust_name custName, address
+        FROM mybatisdb.customers
+        WHERE address = #{address}
+    </select>
+</mapper>
