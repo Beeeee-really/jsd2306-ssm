@@ -70,7 +70,11 @@ public interface WeiboMapper {
      */
     List<WeiboCommentVO> selectWeiboComment(int wid);
 
-
+    /**
+     * 10.ResultMap单表:根据微博ID查询该条微博的信息
+     *    要求显示: 微博id  微博内容content  用户编号user_id
+     */
+    WeiboMapVO1 selectMap1(int id);
 
 }
 

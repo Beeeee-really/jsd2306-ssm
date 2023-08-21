@@ -77,17 +77,20 @@
         WHERE w.id = #{wid}
     </select>
 
-
+    <!--
+        10. ResultMap单表:根据微博ID查询该条微博的信息
+    -->
     <resultMap id="aaa" type="cn.tedu._02mybatis.pojo.WeiboMapVO1">
         <id column="id" property="id"/>
         <result column="content" property="content"/>
         <result column="user_id" property="userId"/>
     </resultMap>
-
-    <select id="selectMap" resultType="aaa">
-        SELECT id, content, user_id
+    <select id="selectMap1" resultMap="aaa">
+        SELECT id,
+               content,
+               user_id
         FROM blog.weibo
-        WHERE id = #{id};
+        WHERE id = #{id}
     </select>
 
 </mapper>

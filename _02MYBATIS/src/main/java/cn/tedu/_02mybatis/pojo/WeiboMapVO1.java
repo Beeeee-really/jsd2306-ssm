@@ -1,6 +1,11 @@
 package cn.tedu._02mybatis.pojo;
 
+/**
+ * 根据微博id查询微博内容的VO类
+ * 用于演示<select>标签的 resultMap属性
+ */
 public class WeiboMapVO1 {
+    //微博id  微博内容content  用户编号user_id
     private Integer id;
     private String content;
     private Integer userId;
@@ -38,3 +43,9 @@ public class WeiboMapVO1 {
         this.userId = userId;
     }
 }
+
+
+
+
+
+

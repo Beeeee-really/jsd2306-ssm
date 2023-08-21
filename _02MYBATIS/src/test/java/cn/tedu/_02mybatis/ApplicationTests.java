@@ -211,7 +211,7 @@ class ApplicationTests {
     }
 
     @Test
-    void selectMapTest(){
+    void selectMap1Test(){
         System.out.println(weiboMapper.selectMap1(200));
     }
 
