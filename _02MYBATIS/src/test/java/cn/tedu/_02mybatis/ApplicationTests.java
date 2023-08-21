@@ -210,6 +210,11 @@ class ApplicationTests {
         System.out.println(weiboMapper.selectWeiboComment(200));
     }
 
+    @Test
+    void selectMapTest(){
+        System.out.println(weiboMapper.selectMap1(200));
+    }
+
 }
 
 

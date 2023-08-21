@@ -78,8 +78,10 @@
     </select>
 
 
-    <resultMap id="aaa" type="">
-
+    <resultMap id="aaa" type="cn.tedu._02mybatis.pojo.WeiboMapVO1">
+        <id column="id" property="id"/>
+        <result column="content" property="content"/>
+        <result column="user_id" property="userId"/>
     </resultMap>
 
     <select id="selectMap" resultType="aaa">

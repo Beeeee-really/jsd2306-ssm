@@ -70,6 +70,8 @@ public interface WeiboMapper {
      */
     List<WeiboCommentVO> selectWeiboComment(int wid);
 
+
+
 }
 
 
