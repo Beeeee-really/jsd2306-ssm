@@ -76,6 +76,10 @@ public interface WeiboMapper {
      */
     WeiboMapVO1 selectMap1(int id);
 
+    /**
+     * 11.查询指定用户id发的微博信息，要求显示：用户id、用户昵称、List集合中 List<Weibo>
+     */
+    WeiboMapVO2 selectMap2(int id);
 }
 
 

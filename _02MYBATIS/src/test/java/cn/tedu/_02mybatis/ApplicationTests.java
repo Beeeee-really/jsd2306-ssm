@@ -215,6 +215,11 @@ class ApplicationTests {
         System.out.println(weiboMapper.selectMap1(200));
     }
 
+    @Test
+    void selectMap2Test(){
+        System.out.println(weiboMapper.selectMap2(100));
+    }
+
 }
 
 

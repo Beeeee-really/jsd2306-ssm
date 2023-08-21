@@ -79,18 +79,49 @@
 
     <!--
         10. ResultMap单表:根据微博ID查询该条微博的信息
+        1) <id>标签: 主键标签;
+        2) <result>标签: 非主键标签;
+        3) column属性: SELECT查询字段名;
+        4) property属性: VO类属性名;
+        5) <resultMap>标签中的type属性：指定最终的VO类。
     -->
     <resultMap id="aaa" type="cn.tedu._02mybatis.pojo.WeiboMapVO1">
         <id column="id" property="id"/>
         <result column="content" property="content"/>
         <result column="user_id" property="userId"/>
     </resultMap>
+
     <select id="selectMap1" resultMap="aaa">
         SELECT id,
                content,
                user_id
         FROM blog.weibo
         WHERE id = #{id}
+    </select>
+
+    <!--
+        11. 查询指定用户id发的微博信息，要求显示：用户id、用户昵称、List集合中 List<Weibo>
+    -->
+    <resultMap id="bbb" type="cn.tedu._02mybatis.pojo.WeiboMapVO2">
+        <id column="uid" property="id"/>
+        <result column="nickname" property="nickname"/>
+        <collection property="weibos" ofType="cn.tedu._02mybatis.pojo.Weibo">
+            <id column="wid" property="id"/>
+            <result column="content" property="content"/>
+            <result column="created" property="created"/>
+            <result column="user_id" property="userId"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectMap2" resultMap="bbb">
+        SELECT u.id uid,
+               u.nickname,
+               w.id wid,
+               w.content,
+               w.created,
+               w.user_id
+        FROM user u JOIN weibo w ON u.id=w.user_id
+        WHERE u.id = #{id}
     </select>
 
 </mapper>
