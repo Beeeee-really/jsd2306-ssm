@@ -135,6 +135,31 @@
         WHERE u.id = #{id}
     </select>
 
+    <!--查询指定微博id的所有评论信息，要求显示：微博id、微博内容、评论的集合List<Comment>-->
+    <resultMap id="ccc" type="cn.tedu._02mybatis.pojo.WeiboMapVO3">
+        <id column="wid" property="id"/>
+        <result column="wcontent" property="content"/>
+        <collection property="comments" ofType="cn.tedu._02mybatis.pojo.Comment">
+            <id column="cid" property="id"/>
+            <result column="ccontent" property="content"/>
+            <result column="created" property="created"/>
+            <result column="user_id" property="userId"/>
+            <result column="weibo_id" property="weiboId"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectMap3" resultMap="ccc">
+        SELECT w.id wid,
+               w.content wcontent,
+               c.id cid,
+               c.content ccontent,
+               c.created,
+               c.user_id,
+               c.weibo_id
+        FROM weibo w JOIN comment c ON w.id=c.weibo_id
+        WHERE w.id = #{id}
+    </select>
+
 </mapper>
 
 

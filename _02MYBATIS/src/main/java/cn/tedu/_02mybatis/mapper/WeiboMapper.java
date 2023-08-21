@@ -80,6 +80,11 @@ public interface WeiboMapper {
      * 11.查询指定用户id发的微博信息，要求显示：用户id、用户昵称、List集合中 List<Weibo>
      */
     WeiboMapVO2 selectMap2(int id);
+
+    /**
+     * 12. 查询指定微博id的所有评论信息，要求显示：微博id、微博内容、评论的集合List<Comment>
+     */
+    WeiboMapVO3 selectMap3(int id);
 }
 
 

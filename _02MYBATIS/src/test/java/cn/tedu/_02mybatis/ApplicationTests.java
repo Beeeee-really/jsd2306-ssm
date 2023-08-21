@@ -210,16 +210,29 @@ class ApplicationTests {
         System.out.println(weiboMapper.selectWeiboComment(200));
     }
 
+    /**
+     * 10. ResultMap单表:根据微博ID查询该条微博的信息
+     */
     @Test
     void selectMap1Test(){
         System.out.println(weiboMapper.selectMap1(200));
     }
 
+    /**
+     * 11.查询指定用户id发的微博信息，要求显示：用户id、用户昵称、List集合中 List<Weibo>
+     */
     @Test
     void selectMap2Test(){
         System.out.println(weiboMapper.selectMap2(100));
     }
 
+    /**
+     * 12. 查询指定微博id的所有评论信息，要求显示：微博id、微博内容、评论的集合List<Comment>
+     */
+    @Test
+    void selectMap3Test(){
+        System.out.println(weiboMapper.selectMap3(200));
+    }
 }
 
 
