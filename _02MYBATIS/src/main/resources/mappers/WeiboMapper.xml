@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu._02mybatis.mapper.WeiboMapper">
+    <!--微博表中插入1条数据-->
+    <insert id="insertWeibo">
+        INSERT INTO weibo(content, created, user_id)
+        VALUES (#{content}, #{created}, #{userId})
+    </insert>
+
+    <!--根据微博ID删除1条数据-->
+    <delete id="deleteWeiboById">
+        DELETE
+        FROM blog.weibo
+        WHERE id = #{id}
+    </delete>
+
+    <!--3.根据微博 id 修改微博-->
+    <update id="updateWeiboById">
+        UPDATE blog.weibo
+        SET content=#{content},
+            created=#{created},
+            user_id=#{userId}
+        WHERE id = #{id}
+    </update>
+
+    <!--
+        4.根据id查询1条微博数据:id content created user_id
+        resultType: 指定返回结果的封装类型
+    -->
+    <select id="selectWeiboById" resultType="cn.tedu._02mybatis.pojo.Weibo">
+        SELECT id, content, created, user_id userId
+        FROM blog.weibo
+        WHERE id = #{id}
+    </select>
+
+    <!--5.根据用户id查询,该用户发过的所有的微博信息[id content created user_id]-->
+    <select id="selectWeiboByUserId" resultType="cn.tedu._02mybatis.pojo.Weibo">
+        SELECT id, content, created, user_id userId
+        FROM blog.weibo
+        WHERE user_id = #{uid}
+    </select>
+
+    <!--6.VO类:根据微博id,查询微博的 内容content 和 发布时间created-->
+    <select id="selectWeiboById2" resultType="cn.tedu._02mybatis.pojo.WeiboIndexVO">
+        SELECT content, created
+        FROM blog.weibo
+        WHERE id = #{id}
+    </select>
+
+    <!--7.查询所有微博的 id  content 和 created-->
+    <select id="selectWeiboAll" resultType="cn.tedu._02mybatis.pojo.WeiboVO">
+        SELECT id, content, created
+        FROM weibo
+    </select>
+
+    <!--8.多表查询:微博列表首页展示功能: 用户昵称 微博内容 微博发布时间-->
+    <select id="selectWeiboList" resultType="cn.tedu._02mybatis.pojo.WeiboListVO">
+        SELECT u.nickname, w.content, w.created
+        FROM user u
+                 JOIN weibo w ON u.id = w.user_id
+    </select>
+
+    <!--9.多表查询:根据微博id查询该条微博的所有评论;
+          要求显示: 微博内容  用户昵称 评论内容  评论时间-->
+    <select id="selectWeiboComment" resultType="cn.tedu._02mybatis.pojo.WeiboCommentVO">
+        SELECT w.content wcontent,
+               u.nickname,
+               c.content ccontent,
+               c.created
+        FROM user u
+                 JOIN comment c
+                      ON u.id = c.user_id
+                 JOIN weibo w
+                      ON w.id = c.weibo_id
+        WHERE w.id = #{wid}
+    </select>
+
+
+    <resultMap id="aaa" type="">
+
+    </resultMap>
+
+    <select id="selectMap" resultType="aaa">
+        SELECT id, content, user_id
+        FROM blog.weibo
+        WHERE id = #{id};
+    </select>
+
+</mapper>
+
+
+
+
+
+
+

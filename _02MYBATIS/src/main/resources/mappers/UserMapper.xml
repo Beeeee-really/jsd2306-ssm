@@ -2,10 +2,11 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!--namespace是一个名称空间-->
+<!--namespace:名称空间,填写 UserMapper 接口的完整路径-->
 <mapper namespace="cn.tedu._02mybatis.mapper.UserMapper">
+    <!--在user表中插入1条数据-->
+    <!--格式化SQL语句: Ctrl + Shift + l-->
     <insert id="insert">
-#         插入一条数据
         INSERT INTO user(username, password, nickname, created)
         VALUES (#{username}, #{password}, #{nickname}, #{created})
     </insert>

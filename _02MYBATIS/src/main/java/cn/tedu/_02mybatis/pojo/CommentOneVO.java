@@ -2,33 +2,19 @@ package cn.tedu._02mybatis.pojo;
 
 import java.util.Date;
 
-/**
- * 评论表对应的实体类
- */
-public class Comment {
-    private Integer id;
+public class CommentOneVO {
+    // 评论的内容 评论的时间 用户的id
     private String content;
     private Date created;
     private Integer userId;
-    private Integer weiboId;
 
     @Override
     public String toString() {
-        return "Comment{" +
-                "id=" + id +
-                ", content='" + content + '\'' +
+        return "CommentOneVO{" +
+                "content='" + content + '\'' +
                 ", created=" + created +
                 ", userId=" + userId +
-                ", weiboId=" + weiboId +
                 '}';
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getContent() {
@@ -53,13 +39,5 @@ public class Comment {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
-    }
-
-    public Integer getWeiboId() {
-        return weiboId;
-    }
-
-    public void setWeiboId(Integer weiboId) {
-        this.weiboId = weiboId;
     }
 }

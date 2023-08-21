@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu._02mybatis.mapper.CommentMapper">
+    <delete id="deleteCommentById">
+        DELETE
+        FROM blog.comment
+        WHERE id = #{id}
+    </delete>
+
+    <update id="UpdateCommentById">
+        UPDATE blog.comment
+        SET content=#{content},
+            created=#{created},
+            user_id=#{userId},
+            weibo_id=#{weiboId}
+        WHERE id = #{id}
+    </update>
+
+    <select id="selectCommentById" resultType="cn.tedu._02mybatis.pojo.CommentOneVO">
+        SELECT content, created, user_id userId
+        FROM blog.comment
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectCommentsById" resultType="cn.tedu._02mybatis.pojo.CommentManyVO">
+        SELECT content, created, weibo_id weiboId
+        FROM blog.comment
+        WHERE user_id = #{uid}
+    </select>
+
+    <!--5.统计评论总条数-->
+    <select id="selectCountAll" resultType="int">
+        SELECT COUNT(*) FROM blog.comment
+    </select>
+
+    <!--重复SQL抽取-->
+    <sql id="deleteSql">
+        DELETE FROM blog.comment WHERE id IN
+    </sql>
+    
+    <!--
+        6.根据评论id,动态删除评论表中数据,要求参数为数组
+        DELETE FROM blog.comment WHERE id IN (2,3,5)
+        1.foreache标签: xml中的遍历标签
+        2.collection属性: 用于指定需要遍历的数据类型,array为数组,list为集合
+        3.item属性: 变量名,用于接收遍历出来的每个数据
+        4.separator属性: 用于指定多个元素之间的分隔符
+    -->
+    <delete id="deleteByIds1">
+        <include refid="deleteSql"/> (
+            <foreach collection="array" item="abc" separator=",">
+                #{abc}
+            </foreach>
+        )
+    </delete>
+
+    <!--7.动态删除,集合方式,collection属性值指定为:list-->
+    <delete id="deleteByIds2">
+        <include refid="deleteSql"/> (
+        <foreach collection="list" item="abc" separator=",">
+            #{abc}
+        </foreach>
+        )
+    </delete>
+
+    <!--8.动态修改:根据评论ID修改评论的相关内容-->
+    <update id="dynamicUpdate">
+        UPDATE blog.comment
+        <set>
+            <if test="content!=null">content=#{content},</if>
+            <if test="created!=null">created=#{created},</if>
+            <if test="userId!=null">user_id=#{userId},</if>
+            <if test="weiboId!=null">weibo_id=#{weiboId}</if>
+        </set>
+        WHERE id=#{id}
+    </update>
+</mapper>
+
+
+

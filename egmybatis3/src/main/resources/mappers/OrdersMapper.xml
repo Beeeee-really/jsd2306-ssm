@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu.egmybatis3.mapper.OrdersMapper">
+    <!--1. 添加一个订单：insert-->
+    <insert id="insert">
+        INSERT INTO mybatisdb.orders(state,amount,created)
+        VALUES (#{state},#{amount},#{created})
+    </insert>
+
+    <!--2. 查询所有订单：selectAll  **全列查询**-->
+    <select id="selectAll" resultType="cn.tedu.egmybatis3.pojo.entity.Orders">
+        SELECT id, state, amount, created FROM mybatisdb.orders
+    </select>
+
+    <!--3. 通过id查询1个订单：selectOne   **只查询订单状态和金额**-->
+    <select id="selectOne" resultType="cn.tedu.egmybatis3.pojo.vo.SelectOneVO">
+        SELECT state, amount FROM mybatisdb.orders
+        WHERE id=#{id}
+    </select>
+
+    <!--8. SQL语句重用优化-->
+    <sql id="deleteSql">
+        DELETE FROM mybatisdb.orders WHERE
+    </sql>
+
+    <!--4. 通过一个id删除订单：deleteById-->
+    <delete id="deleteById">
+        <include refid="deleteSql"/> id=#{id}
+    </delete>
+
+    <!--5. 通过多个id批量删除订单：deleteMany  **使用List集合方式**-->
+    <delete id="deleteMany">
+        <include refid="deleteSql"/> id IN (
+        <foreach collection="list" item="id" separator=",">
+            #{id}
+        </foreach>
+        )
+    </delete>
+
+    <!--6. 根据id动态修改订单：dynamicUpdate-->
+    <update id="dynamicUpdate">
+        UPDATE mybatisdb.orders
+        <set>
+            <if test="state!=null">state=#{state},</if>
+            <if test="amount!=null">amount=#{amount},</if>
+            <if test="created!=null">created=#{created}</if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <!--7. 统计订单总数：selectCount-->
+    <select id="selectCount">
+        SELECT COUNT(*) FROM mybatisdb.orders
+    </select>
+</mapper>

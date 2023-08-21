@@ -2,14 +2,18 @@ package cn.tedu._02mybatis.pojo;
 
 import java.util.Date;
 
-public class WeiBoVO {
+/**
+ * 微博VO类
+ */
+public class WeiboVO {
+    //此功能客户端[前端]只需要3个数据:微博ID 微博内容 和 微博发布时间
     private Integer id;
     private String content;
     private Date created;
 
     @Override
     public String toString() {
-        return "WeiBoVO{" +
+        return "WeiboVO{" +
                 "id=" + id +
                 ", content='" + content + '\'' +
                 ", created=" + created +
@@ -40,3 +44,9 @@ public class WeiBoVO {
         this.created = created;
     }
 }
+
+
+
+
+
+
