@@ -1,11 +1,20 @@
+#### 4.修改指定用户
+POST http://localhost:8080/v1/users/update
+Content-Type: application/x-www-form-urlencoded
+
+id=103&username=赵丽颖&password=19871016&nickname=赵小刀
+
+### 3.删除指定用户
+GET http://localhost:8080/v1/users/delete?id=104
+Accept: application/json
+
+### 2.获取所有用户的信息,包含用户名和密码
 GET http://localhost:8080/v1/users/userList
 Accept: application/json
 
-###
 ### 1.插入1条数据测试
 POST http://localhost:8080/v1/users/insert
 Content-Type: application/x-www-form-urlencoded
 
 username=赵敏&password=123456&nickname=郡主
 
-###

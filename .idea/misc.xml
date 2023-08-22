@@ -3,6 +3,7 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/_03MVCBOOT01" />
+    <file type="web" url="file://$PROJECT_DIR$/egmvc1" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
@@ -15,6 +16,7 @@
         <option value="$PROJECT_DIR$/egmybatis3/pom.xml" />
         <option value="$PROJECT_DIR$/_03MVCBOOT01/pom.xml" />
         <option value="$PROJECT_DIR$/_03MVCBOOT02/pom.xml" />
+        <option value="$PROJECT_DIR$/egmvc1/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

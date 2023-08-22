@@ -12,4 +12,28 @@
         SELECT username, password
         FROM blog.user
     </select>
+
+    <delete id="deleteUser">
+        DELETE FROM blog.user
+        WHERE id = #{id}
+    </delete>
+
+    <update id="updateUser">
+        UPDATE blog.user
+        <set>
+            <if test="username!=null">username=#{username},</if>
+            <if test="password!=null">password=#{password},</if>
+            <if test="nickname!=null">nickname=#{nickname}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
 </mapper>
+
+
+
+
+
+
+
+
