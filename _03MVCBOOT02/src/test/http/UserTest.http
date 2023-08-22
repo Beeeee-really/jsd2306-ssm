@@ -1,0 +1,7 @@
+### 1.插入1条数据测试
+POST http://localhost:8080/v1/users/insert
+Content-Type: application/x-www-form-urlencoded
+
+username=赵敏&password=123456&nickname=郡主
+
+###
