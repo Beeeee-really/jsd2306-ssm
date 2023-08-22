@@ -4,7 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.tedu._03mvcboot02.mapper.UserMapper">
     <insert id="insertUser">
-        INSERT INTO user(username,password,nickname,created)
+        INSERT INTO user(username, password, nickname, created)
         VALUES (#{username}, #{password}, #{nickname}, #{created})
     </insert>
+
+    <select id="selectUser" resultType="cn.tedu._03mvcboot02.pojo.vo.UserListVO">
+        SELECT username, password
+        FROM blog.user
+    </select>
 </mapper>

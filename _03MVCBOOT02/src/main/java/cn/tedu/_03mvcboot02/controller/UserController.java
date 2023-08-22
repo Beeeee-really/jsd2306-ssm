@@ -40,15 +40,11 @@ public class UserController {
 
     @RequestMapping("/v1/users/userList")
     @ResponseBody
-    public List<UserListVO> selectList() {
-
-        return null;
-    }
-    @RequestMapping("v1/users/delete")
-
-    public String deleteUser(int id){
-
-        return null;
+    public List<UserListVO> selectUser(){
+        /*
+            1.调用接口方法,直接查询
+         */
+        return userMapper.selectUser();
     }
 }
 
