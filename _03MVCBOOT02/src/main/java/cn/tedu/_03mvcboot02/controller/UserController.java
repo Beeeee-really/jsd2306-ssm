@@ -3,6 +3,7 @@ package cn.tedu._03mvcboot02.controller;
 import cn.tedu._03mvcboot02.mapper.UserMapper;
 import cn.tedu._03mvcboot02.pojo.dto.UserInsertDTO;
 import cn.tedu._03mvcboot02.pojo.entity.User;
+import cn.tedu._03mvcboot02.pojo.vo.UserListVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -34,6 +36,19 @@ public class UserController {
         userMapper.insertUser(user);
 
         return "添加成功";
+    }
+
+    @RequestMapping("/v1/users/userList")
+    @ResponseBody
+    public List<UserListVO> selectList() {
+
+        return null;
+    }
+    @RequestMapping("v1/users/delete")
+
+    public String deleteUser(int id){
+
+        return null;
     }
 }
 
