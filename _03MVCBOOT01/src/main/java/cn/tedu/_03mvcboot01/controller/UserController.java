@@ -42,7 +42,9 @@ public class UserController {
 
     @RequestMapping("signup")
     @ResponseBody
-    public String signup() {
-        return "注册成功";
+    public String signup(HttpServletRequest request, HttpServletResponse response) {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        return "注册成功 username:" + username + "  password:" + password;
     }
 }
