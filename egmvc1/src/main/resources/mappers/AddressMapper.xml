@@ -7,4 +7,15 @@
         INSERT INTO mvcdb.address(id,receiver,address,email,mobile,tag)
         VALUES (null,#{receiver},#{address},#{email},#{mobile},#{tag})
     </insert>
+
+    <select id="selectById" resultType="cn.tedu.egmvc1.pojo.entity.Address">
+        SELECT id,
+               receiver,
+               address,
+               email,
+               mobile,
+               tag
+        FROM mvcdb.address
+        WHERE id = #{id}
+    </select>
 </mapper>

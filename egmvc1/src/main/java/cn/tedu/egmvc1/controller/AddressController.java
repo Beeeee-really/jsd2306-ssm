@@ -30,4 +30,17 @@ public class AddressController {
 
         return "添加成功";
     }
+
+    /**
+     * 根据地址的id查询:1个收货地址的所有数据
+     * @param id 地址的id
+     * @return 实体类对象
+     */
+    @RequestMapping("selectById")
+    public Address selectById(int id){
+        /*
+        1.调用查询接口
+         */
+        return addressMapper.selectById(id);
+    }
 }

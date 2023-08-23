@@ -1,3 +1,9 @@
+### 2.根据id查询收货地址
+GET http://localhost:8080/address/selectById?id=100
+Accept: application/json
+
+
+### 1.新增收货地址
 POST http://localhost:8080/address/insert
 Content-Type: application/x-www-form-urlencoded
 
