@@ -23,12 +23,13 @@ public class UserController {
 
     /**
      * 注册功能
+     *
      * @param userRegDTO
      * @return int
      * RequestBody注解：将客户端传递过来的JSON格式的数据封装到DTO中
      */
     @PostMapping("reg")
-    public int reg(@RequestBody UserRegDTO userRegDTO){
+    public int reg(@RequestBody UserRegDTO userRegDTO) {
         /*
             1.确认用户名是否被占用 - 查询接口
             2.被占用: 直接返回2
@@ -50,19 +51,19 @@ public class UserController {
     }
 
     @PostMapping("login")
-    public int login(@RequestBody UserLoginDTO userLoginDTO){
+    public int login(@RequestBody UserLoginDTO userLoginDTO) {
         /*
-            1.判断用户名是否正确[注册中的查询接口方法];
-            2.比较密码;
-            3.根据实际需求返回响应;
+         1.判断用户名是否正确[注册中的查询接口方法];
+         2.比较密码;
+         3.根据实际需求返回响应;
          */
         System.out.println("userLoginDTO = " + userLoginDTO);
         UserVO userVO = userMapper.selectByUsername(userLoginDTO.getUsername());
-        if (userVO == null){//用户名错误
+        if (userVO == null) {//用户名错误
             return 3;
         }
         //校验密码
-        if (userVO.getPassword().equals(userLoginDTO.getPassword())){//登录成功
+        if (userVO.getPassword().equals(userLoginDTO.getPassword())) {//登录成功
             return 1;
         }
         // 密码错误
