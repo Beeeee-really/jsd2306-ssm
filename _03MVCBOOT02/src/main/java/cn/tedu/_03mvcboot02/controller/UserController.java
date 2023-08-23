@@ -69,7 +69,7 @@ public class UserController {
 
         return "删除成功";
     }
-
+    
     @RequestMapping("update")
     //@ResponseBody
     public String updateUser(UserUpdateDTO userUpdateDTO){
