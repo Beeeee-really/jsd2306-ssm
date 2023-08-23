@@ -1,29 +1,30 @@
-package cn.tedu._04weibo.pojo.dto;
+package cn.tedu._04weibo.pojo.vo;
 
-/**
- * 注册功能DTO类
- */
-public class UserRegDTO {
-    //依据API文档,属性有 用户名,密码,昵称
-    private String username;
+public class UserVO {
+    /*
+        1.注册功能: 查询任意字段即可,比如id
+        2.登录功能: 需要校验密码,得查询password
+        3.登录成功: 跳转到网站首页,欢迎你:nickname
+     */
+    private Integer id;
     private String password;
     private String nickname;
 
     @Override
     public String toString() {
-        return "UserRegDTO{" +
-                "username='" + username + '\'' +
+        return "UserVO{" +
+                "id=" + id +
                 ", password='" + password + '\'' +
                 ", nickname='" + nickname + '\'' +
                 '}';
     }
 
-    public String getUsername() {
-        return username;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getPassword() {
@@ -42,8 +43,3 @@ public class UserRegDTO {
         this.nickname = nickname;
     }
 }
-
-
-
-
-
