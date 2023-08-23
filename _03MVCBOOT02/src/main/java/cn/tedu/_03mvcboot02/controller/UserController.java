@@ -8,9 +8,7 @@ import cn.tedu._03mvcboot02.pojo.vo.UserListVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -50,8 +48,9 @@ public class UserController {
         return "添加成功";
     }
 
-    @RequestMapping("userList")
+    //@RequestMapping(value = "userList", method = RequestMethod.GET)
     //@ResponseBody
+    @GetMapping("userList")
     public List<UserListVO> selectUser(){
         /*
             1.调用接口方法,直接查询
@@ -69,7 +68,7 @@ public class UserController {
 
         return "删除成功";
     }
-    
+
     @RequestMapping("update")
     //@ResponseBody
     public String updateUser(UserUpdateDTO userUpdateDTO){
@@ -79,6 +78,16 @@ public class UserController {
         userMapper.updateUser(userUpdateDTO);
         return "修改成功";
     }
+
+    /**
+     * 根据用户id查询1个用户的信息,只查询用户名和密码
+     * v1/users/select/用户id
+     */
+    @GetMapping("select/{id}")
+    public UserListVO selectById(@PathVariable int id){
+        return userMapper.selectById(id);
+    }
+
 }
 
 

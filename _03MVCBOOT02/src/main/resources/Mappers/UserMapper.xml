@@ -28,6 +28,12 @@
         WHERE id = #{id}
     </update>
 
+    <select id="selectById" resultType="cn.tedu._03mvcboot02.pojo.vo.UserListVO">
+        SELECT username, password
+        FROM blog.user
+        WHERE id = #{id}
+    </select>
+
 </mapper>
 
 

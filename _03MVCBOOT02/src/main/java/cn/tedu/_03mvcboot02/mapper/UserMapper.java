@@ -35,6 +35,8 @@ public interface UserMapper {
      * @return 受影响的数据条数
      */
     int updateUser(UserUpdateDTO userUpdateDTO);
+
+    UserListVO selectById(int id);
 }
 
 
