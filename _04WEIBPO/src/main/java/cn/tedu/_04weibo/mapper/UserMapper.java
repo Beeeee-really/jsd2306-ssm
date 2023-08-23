@@ -1,4 +1,4 @@
-package cn.tedu._04weibo.Mapper;
+package cn.tedu._04weibo.mapper;
 
 import cn.tedu._04weibo.pojo.entity.User;
 import cn.tedu._04weibo.pojo.vo.UserVO;

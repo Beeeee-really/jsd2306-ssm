@@ -15,7 +15,7 @@ public class UserTests {
 
     @Test
     void selectByUsernameTest(){
-        System.out.println(userMapper.selectByUsername("Lucy"));
+        System.out.println(userMapper.selectByUsername("xxx"));
     }
 
     @Test

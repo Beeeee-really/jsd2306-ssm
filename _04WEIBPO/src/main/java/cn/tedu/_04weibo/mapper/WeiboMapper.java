@@ -1,4 +1,4 @@
-package cn.tedu._04weibo.Mapper;
+package cn.tedu._04weibo.mapper;
 
 public interface WeiboMapper {
 }
