@@ -1,3 +1,12 @@
+### 2.登录功能测试
+POST http://localhost:8080/v1/users/login
+Content-Type: application/json
+
+{
+  "username": "Lcuy",
+  "password": "123456"
+}
+
 ### 1.注册功能测试
 POST http://localhost:8080/v1/users/reg
 Content-Type: application/json

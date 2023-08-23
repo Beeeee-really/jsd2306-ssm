@@ -1,6 +1,7 @@
 package cn.tedu._04weibo.controller;
 
 import cn.tedu._04weibo.mapper.UserMapper;
+import cn.tedu._04weibo.pojo.dto.UserLoginDTO;
 import cn.tedu._04weibo.pojo.dto.UserRegDTO;
 import cn.tedu._04weibo.pojo.entity.User;
 import cn.tedu._04weibo.pojo.vo.UserVO;
@@ -46,6 +47,26 @@ public class UserController {
         userMapper.insertUser(user);
         //注册成功
         return 1;
+    }
+
+    @PostMapping("login")
+    public int login(@RequestBody UserLoginDTO userLoginDTO){
+        /*
+            1.判断用户名是否正确[注册中的查询接口方法];
+            2.比较密码;
+            3.根据实际需求返回响应;
+         */
+        System.out.println("userLoginDTO = " + userLoginDTO);
+        UserVO userVO = userMapper.selectByUsername(userLoginDTO.getUsername());
+        if (userVO == null){//用户名错误
+            return 3;
+        }
+        //校验密码
+        if (userVO.getPassword().equals(userLoginDTO.getPassword())){//登录成功
+            return 1;
+        }
+        // 密码错误
+        return 2;
     }
 }
 
