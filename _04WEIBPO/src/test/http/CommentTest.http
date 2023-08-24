@@ -1,0 +1,6 @@
+POST http://localhost:8080/v1/comment/insert
+Content-Type: application/json
+
+{"id": 200, "content": "高手都在评论区啊"}
+
+###

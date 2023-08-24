@@ -3,4 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.tedu._04weibo.mapper.CommentMapper">
+    <insert id="insert">
+        INSERT INTO blog.comment(content,created,user_id,weibo_id)
+        VALUES (#{content}, #{created}, #{userId}, #{weiboId})
+    </insert>
 </mapper>
