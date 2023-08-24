@@ -1,9 +1,12 @@
+### 2.获取指定微博的所有评论
+GET http://localhost:8080/v1/comment/selectByWeiboId?id=200
+Accept: application/json
 
-
-###
+### 1.发布评论
 POST http://localhost:8080/v1/comment/insert
 Content-Type: application/json
 
-{"id": 200, "content": "高手都在评论区啊"}
-
-###
+{
+  "id": 200,
+  "content": "也许时间是一种解药,也是我现在正服下的毒药"
+}

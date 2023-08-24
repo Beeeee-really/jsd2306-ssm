@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>达达微博</title>
+</head>
+<body>
+
+<div>
+    <h1>微博首页</h1>
+
+    <!--判断是否登录，显示不同的内容-->
+    <div v-if="isLogin">
+        <!-- 把得到的用户昵称显示出来 -->
+        <h3>欢迎<span style="color:darkred">{{user.nickname}}</span>回来！</h3>
+        <a href="/insert.html">发微博</a>
+        <!--href是废掉跳转功能,然后添加点击事件-->
+        <a href="javascript:void(0)" @click="logout()">退出登录</a>
+    </div>
+    <div v-else>
+        <a href="/reg.html">注册</a>
+        <a href="/login.html">登录</a>
+    </div>
+
+    <hr>
+    <!-- 需要有一个数组，数组中存放的是微博对象 -->
+    <div v-for="w in arr">
+        <!-- 需要查id、nickname、content -->
+        <h3>
+            <a :href="'/detail.html?id='+w.id">
+                <span style="color:darkred">{{w.nickname}}</span>:{{w.content}}
+            </a>
+        </h3>
+    </div>
+
+</div>
+
+
+<!-- 引入axios和vue的框架文件 -->
+<script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<script>
+    let v = new Vue({
+        el: "body>div",
+        data:{
+            isLogin: false,
+            user:{},
+            arr:[]
+        },
+        methods:{
+            logout(){
+                axios.get("/v1/users/logout").then(function (response){
+                    v.isLogin=false;
+                })
+            }
+        },
+        created:function (){
+            // 进入到页面就要发请求，获取当前登录的用户对象
+            axios.get("/v1/users/currentUser").then(function (response){
+                // 如果登录过得到的response.data是一个UserVO对象，未登录得到的是一个空字符串""
+                // 此处给user属性赋值为UserVO
+                v.user = response.data;
+                if (response.data==""){ //没有拿到当前登录的对象
+                    v.isLogin=false;
+                }else{ //得到了当前登录的对象
+                    v.isLogin=true;
+                }
+            })
+
+            // 发请求获取所有微博数据
+            axios.get("/v1/weibo/selectIndex").then(function (response){
+                v.arr = response.data;
+            })
+        }
+    })
+</script>
+
+</body>
+</html>

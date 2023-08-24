@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.tedu._04weibo.mapper.CommentMapper">
     <insert id="insert">
-        INSERT INTO blog.comment(content,created,user_id,weibo_id)
+        INSERT INTO blog.comment(content, created, user_id, weibo_id)
         VALUES (#{content}, #{created}, #{userId}, #{weiboId})
     </insert>
 
     <select id="selectByWeiboId" resultType="cn.tedu._04weibo.pojo.vo.CommentVO">
-        SELECT c.id, c.content, c.created, u.nickname
+        SELECT c.id,
+               c.content,
+               c.created,
+               u.nickname
         FROM blog.user u
                  JOIN blog.comment c ON u.id = c.user_id
-        WHERE C.weibo_id = #{id};
+        WHERE c.weibo_id = #{id}
     </select>
 </mapper>
