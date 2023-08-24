@@ -7,4 +7,11 @@
         INSERT INTO blog.comment(content,created,user_id,weibo_id)
         VALUES (#{content}, #{created}, #{userId}, #{weiboId})
     </insert>
+
+    <select id="selectByWeiboId" resultType="cn.tedu._04weibo.pojo.vo.CommentVO">
+        SELECT c.id, c.content, c.created, u.nickname
+        FROM blog.user u
+                 JOIN blog.comment c ON u.id = c.user_id
+        WHERE C.weibo_id = #{id};
+    </select>
 </mapper>
