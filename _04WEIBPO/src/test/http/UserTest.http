@@ -1,9 +1,17 @@
+### 4.退出登录功能
+GET http://localhost:8080/v1/users/logout
+Accept: application/json
+
+### 3.获取当前用户功能
+GET http://localhost:8080/v1/users/currentUser
+Accept: application/json
+
 ### 2.登录功能测试
 POST http://localhost:8080/v1/users/login
 Content-Type: application/json
 
 {
-  "username": "Lcuy",
+  "username": "Lucy",
   "password": "123456"
 }
 
@@ -12,7 +20,7 @@ POST http://localhost:8080/v1/users/reg
 Content-Type: application/json
 
 {
-  "username": "shasha",
+  "username": "Lucy",
   "password": "123456",
   "nickname": "lucy"
 }

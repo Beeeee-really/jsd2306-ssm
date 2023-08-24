@@ -1,0 +1,15 @@
+### 3.微博详情页
+GET http://localhost:8080/v1/weibo/selectById?id=201
+Accept: application/json
+
+### 2.微博首页列表
+GET http://localhost:8080/v1/weibo/selectIndex
+Accept: application/json
+
+### 1.发布微博功能
+POST http://localhost:8080/v1/weibo/insert
+Content-Type: application/json
+
+{"content": "咖啡馆与广场有三个街区,就像霓虹灯和月亮的距离"}
+
+###

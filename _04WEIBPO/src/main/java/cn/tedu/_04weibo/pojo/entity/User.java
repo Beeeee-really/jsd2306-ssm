@@ -1,5 +1,7 @@
 package cn.tedu._04weibo.pojo.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 /**
