@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
+</head>
+<body>
+<div id="app">
+    <textarea cols="30" rows="10" placeholder="说点儿啥..." style="width:200px;height:100px;white-space:pre-wrap;background-color: bisque" v-model="weibo.content"></textarea>
+    <input type="button" value="发微博" @click="insert()">
+</div>
+</body>
+<!--引入axios和vue框架文件-->
+<script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+<!-- import Vue before Element -->
+<script src="https://cdn.staticfile.org/vue/2.6.14/vue.min.js"></script>
+<!-- import JavaScript -->
+<script src="https://cdn.staticfile.org/element-ui/2.15.9/index.min.js"></script>
+<script>
+    let v = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                dialogImageUrl: '',
+                dialogVisible: false,
+                weibo:{content:""},
+                fileList:[]
+            }
+        },
+        methods:{
+            insert(){
+                //发出发微博的请求
+                axios.post("/v1/weibo/insert",v.weibo).then(function (response) {
+                    if (response.data==1){
+                        location.href="/";//回到首页
+                    }else{
+                        alert("请先登录!");
+                        location.href="/login.html";
+                    }
+                })
+
+            },
+        }
+    })
+</script>
+</html>

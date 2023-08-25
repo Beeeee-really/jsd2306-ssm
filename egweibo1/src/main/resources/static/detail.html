@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <h1>微博详情页面</h1>
+    <h2><span style="color:mediumvioletred">{{weibo.nickname}}</span>:{{weibo.content}}</h2>
+    <p>发布于:{{weibo.created}}</p>
+    <hr>
+    <div v-for="c in arr">
+        <h4>
+            <span style="color:red">{{c.nickname}}评论道:</span>{{c.content}}
+            <span style="float: right">发布于：{{c.created}}</span>
+        </h4>
+    </div>
+
+    <textarea cols="30" rows="3" placeholder="评论内容..." style="white-space: pre-wrap" v-model="comment.content"></textarea>
+    <input type="button" value="评论" @click="insert()">
+</div>
+
+<!-- 引入axios和vue的框架文件 -->
+<script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<script>
+    let v = new Vue({
+        el: "body>div",
+        data:{
+            weibo:{},
+            comment:{content:""},
+            arr:[]
+        },
+        methods:{
+            insert(){
+                // 查看评论表:id(不需要传递)、content、created(服务器生成)
+                // user_id(当前登录用户的id)、weibo_id(在weibo对象中获取)
+                // 发布评论时需要把当前浏览的微博id添加到评论对象中
+                v.comment.id = v.weibo.id;
+                // 发请求,发布评论
+                axios.post("/v1/comment/insert", v.comment).then(function (response){
+                    // 未登录不能评论
+                    if (response.data==1){
+                        location.reload(); // 刷新页面
+                    }else{
+                        alert("请先登录");
+                        location.href = "/login.html";
+                    }
+                })
+            }
+        },
+        created: function (){
+            axios.get("/v1/weibo/selectById"+location.search).then(function (response){
+                v.weibo = response.data;
+            })
+
+            // 发请求获取当前微博相关的评论
+            // 上面的get()会开线程发请求,主线程会继续往下走
+            axios.get("/v1/comment/selectByWeiboId"+location.search).then(function (response){
+                v.arr = response.data;
+            })
+        }
+    })
+</script>
+
+</body>
+</html>
