@@ -7,11 +7,14 @@ import cn.tedu._04weibo.pojo.vo.UserVO;
 import cn.tedu._04weibo.pojo.vo.WeiboDetailVO;
 import cn.tedu._04weibo.pojo.vo.WeiboIndexVO;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
@@ -34,7 +37,7 @@ public class WeiboController {
      */
     @ApiOperation(value = "发布微博功能")
     @PostMapping("insert")
-    public int insertWeibo(@RequestBody WeiboDTO weiboDTO, HttpSession session){
+    public int insertWeibo(@RequestBody WeiboDTO weiboDTO, @ApiIgnore HttpSession session){
         /*
             1.判断登录状态
               1.1 未登录: return 2;
@@ -75,10 +78,21 @@ public class WeiboController {
      * 微博详情页功能
      * @param id 微博的id
      * @return VO
+     * ApiImplicitParam注解:Knife4j注解,通过声明参数接收客户端传递的数据时使用此注解
+     *   1.name参数:指定参数名称;
+     *   2.value参数:指定参数描述;
+     *   3.required参数:是否为必填;
+     *   4.example参数:示例值,必须为字符串类型;
+     *   5.dataType参数:指定类型,默认是字符串类型;
      */
     @ApiOperation(value = "微博详情功能")
     @GetMapping("selectById")
-    public WeiboDetailVO selectById(int id){
+    //当有多个参数时,使用此注解:ApiImplicitParams
+    @ApiImplicitParams(value = {
+            @ApiImplicitParam(name="id", value = "微博编号", required = true, example = "200", dataType = "int"),
+            @ApiImplicitParam(name="username", value = "用户名", required = true)
+    })
+    public WeiboDetailVO selectById(int id, String username){
         /*
             1.调用接口方法查询
          */

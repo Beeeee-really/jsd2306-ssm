@@ -1,5 +1,7 @@
 package cn.tedu._04weibo.controller;
 
+import cn.tedu._04weibo.common.response.JsonResult;
+import cn.tedu._04weibo.common.response.StatusCode;
 import cn.tedu._04weibo.mapper.UserMapper;
 import cn.tedu._04weibo.pojo.dto.UserLoginDTO;
 import cn.tedu._04weibo.pojo.dto.UserRegDTO;
@@ -11,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
@@ -40,7 +43,7 @@ public class UserController {
      */
     @ApiOperation(value = "注册功能")
     @PostMapping("reg")
-    public int reg(@RequestBody UserRegDTO userRegDTO){
+    public JsonResult reg(@RequestBody UserRegDTO userRegDTO){
         /*
             1.确认用户名是否被占用 - 查询接口
             2.被占用: 直接返回2
@@ -52,7 +55,8 @@ public class UserController {
 
         UserVO userVO = userMapper.selectByUsername(userRegDTO.getUsername());
         if (userVO != null) {//用户名被占用
-            return 2;
+            //统一响应结果的返回
+            return new JsonResult(StatusCode.USERNAME_ALREADY_EXISTS);
         }
         //存入数据
         User user = new User();
@@ -60,12 +64,12 @@ public class UserController {
         user.setCreated(new Date());
         userMapper.insertUser(user);
         //注册成功
-        return 1;
+        return new JsonResult(StatusCode.OPERATION_SUCCESS);
     }
 
     @ApiOperation(value = "登录功能")
     @PostMapping("login")
-    public int login(@RequestBody UserLoginDTO userLoginDTO, HttpSession session){
+    public JsonResult login(@RequestBody UserLoginDTO userLoginDTO, @ApiIgnore HttpSession session){
         /*
             1.判断用户名是否正确[注册中的查询接口方法];
             2.比较密码;
@@ -74,7 +78,7 @@ public class UserController {
         System.out.println("userLoginDTO = " + userLoginDTO);
         UserVO userVO = userMapper.selectByUsername(userLoginDTO.getUsername());
         if (userVO == null){//用户名错误
-            return 3;
+            return new JsonResult(StatusCode.USERNAME_ERROR);
         }
         //校验密码
         if (userVO.getPassword().equals(userLoginDTO.getPassword())){//登录成功
@@ -82,10 +86,10 @@ public class UserController {
                 登录成功,将该用户的会话状态保持!
              */
             session.setAttribute("user", userVO);
-            return 1;
+            return new JsonResult(StatusCode.LOGIN_SUCCESS);
         }
         // 密码错误
-        return 2;
+        return new JsonResult(StatusCode.PASSWORD_ERROR);
     }
 
     /**
@@ -95,7 +99,7 @@ public class UserController {
      */
     @ApiOperation(value = "获取当前用户")
     @GetMapping("currentUser")
-    public UserVO currentUser(HttpSession session){
+    public JsonResult currentUser(@ApiIgnore HttpSession session){
         /*
             1.从session中获取当初存储的用户标识
               session: {"user": userVO}
@@ -107,12 +111,12 @@ public class UserController {
             userVO可能为null,也可能不为null;
             服务端无需关心是否为null,一切交由客户端去判断!
          */
-        return userVO;
+        return new JsonResult(StatusCode.OPERATION_SUCCESS, userVO);
     }
 
     @ApiOperation(value = "退出登录")
     @GetMapping("logout")
-    public void logout(HttpSession session){
+    public void logout(@ApiIgnore HttpSession session){
         /*
             删除session会话中的标识
          */
