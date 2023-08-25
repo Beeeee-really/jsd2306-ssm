@@ -5,6 +5,7 @@ import cn.tedu._04weibo.pojo.dto.CommentDTO;
 import cn.tedu._04weibo.pojo.entity.Comment;
 import cn.tedu._04weibo.pojo.vo.CommentVO;
 import cn.tedu._04weibo.pojo.vo.UserVO;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -60,6 +61,13 @@ public class CommentController {
             1.调用接口方法
          */
         return commentMapper.selectByWeiboId(id);
+    }
+
+
+
+    @ApiOperation(value = "发布评论功能")
+    public int insert(){
+        return 1;
     }
 
 }
