@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public enum StatusCode {
+    SUCCESS(1, "OK"),
     NOT_LOGIN(1000, "未登录"),
     LOGIN_SUCCESS(1001, "登录成功"),
     PASSWORD_ERROR(1002, "密码错误"),

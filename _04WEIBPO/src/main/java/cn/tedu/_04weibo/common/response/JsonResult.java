@@ -55,6 +55,27 @@ public class JsonResult {
         this.msg = statusCode.getMsg();
         this.data = data;
     }
+
+    /**
+     * 第6个构造方法：用于静态方法中快速构建JsonResult对象
+     * 应用场景：所有操作成功的功能
+     */
+    public JsonResult(Object data) {
+        this.code = StatusCode.SUCCESS.getCode();
+        this.msg = StatusCode.SUCCESS.getMsg();
+        this.data = data;
+    }
+
+    /**
+     * 定义2个静态方法,用于快速生成 JsonResult 对象
+     */
+    public static JsonResult ok(Object data){
+        return new JsonResult(data);
+    }
+
+    public static JsonResult ok(){
+        return ok(null);
+    }
 }
 
 

@@ -1,5 +1,7 @@
 package cn.tedu._04weibo.controller;
 
+import cn.tedu._04weibo.common.response.JsonResult;
+import cn.tedu._04weibo.common.response.StatusCode;
 import cn.tedu._04weibo.mapper.WeiboMapper;
 import cn.tedu._04weibo.pojo.dto.WeiboDTO;
 import cn.tedu._04weibo.pojo.entity.Weibo;
@@ -15,6 +17,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
+import springfox.documentation.spring.web.json.Json;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
@@ -37,7 +40,7 @@ public class WeiboController {
      */
     @ApiOperation(value = "发布微博功能")
     @PostMapping("insert")
-    public int insertWeibo(@RequestBody WeiboDTO weiboDTO, @ApiIgnore HttpSession session){
+    public JsonResult insertWeibo(@RequestBody WeiboDTO weiboDTO, @ApiIgnore HttpSession session){
         /*
             1.判断登录状态
               1.1 未登录: return 2;
@@ -49,7 +52,7 @@ public class WeiboController {
         UserVO userVO = (UserVO) session.getAttribute("user");
         if (userVO == null){
             //未登录
-            return 2;
+            return new JsonResult(StatusCode.NOT_LOGIN);
         }
         //调用接口
         Weibo weibo = new Weibo();
@@ -58,7 +61,7 @@ public class WeiboController {
         weibo.setUserId(userVO.getId());
         weiboMapper.insertWeibo(weibo);
 
-        return 1;
+        return JsonResult.ok();
     }
 
     /**
@@ -67,11 +70,13 @@ public class WeiboController {
      */
     @ApiOperation(value = "微博首页列表")
     @GetMapping("selectIndex")
-    public List<WeiboIndexVO> selectIndex(){
+    public JsonResult selectIndex(){
         /*
             1.调用接口方法查询
          */
-        return weiboMapper.selectIndex();
+        List<WeiboIndexVO> weiboIndexVOS = weiboMapper.selectIndex();
+
+        return JsonResult.ok(weiboIndexVOS);
     }
 
     /**
@@ -92,11 +97,13 @@ public class WeiboController {
             @ApiImplicitParam(name="id", value = "微博编号", required = true, example = "200", dataType = "int"),
             @ApiImplicitParam(name="username", value = "用户名", required = true)
     })
-    public WeiboDetailVO selectById(int id, String username){
+    public JsonResult selectById(int id, String username){
         /*
             1.调用接口方法查询
          */
-        return weiboMapper.selectById(id);
+        WeiboDetailVO weiboDetailVO = weiboMapper.selectById(id);
+
+        return JsonResult.ok(weiboDetailVO);
     }
 }
 

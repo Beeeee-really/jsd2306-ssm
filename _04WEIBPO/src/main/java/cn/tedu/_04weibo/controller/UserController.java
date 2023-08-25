@@ -14,6 +14,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
+import springfox.documentation.spring.web.json.Json;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
@@ -64,7 +65,7 @@ public class UserController {
         user.setCreated(new Date());
         userMapper.insertUser(user);
         //注册成功
-        return new JsonResult(StatusCode.OPERATION_SUCCESS);
+        return JsonResult.ok();
     }
 
     @ApiOperation(value = "登录功能")
@@ -86,7 +87,7 @@ public class UserController {
                 登录成功,将该用户的会话状态保持!
              */
             session.setAttribute("user", userVO);
-            return new JsonResult(StatusCode.LOGIN_SUCCESS);
+            return JsonResult.ok();
         }
         // 密码错误
         return new JsonResult(StatusCode.PASSWORD_ERROR);
@@ -111,16 +112,18 @@ public class UserController {
             userVO可能为null,也可能不为null;
             服务端无需关心是否为null,一切交由客户端去判断!
          */
-        return new JsonResult(StatusCode.OPERATION_SUCCESS, userVO);
+        return JsonResult.ok(userVO);
     }
 
     @ApiOperation(value = "退出登录")
     @GetMapping("logout")
-    public void logout(@ApiIgnore HttpSession session){
+    public JsonResult logout(@ApiIgnore HttpSession session){
         /*
             删除session会话中的标识
          */
         session.removeAttribute("user");
+
+        return JsonResult.ok();
     }
 }
 

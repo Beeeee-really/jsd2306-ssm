@@ -1,5 +1,7 @@
 package cn.tedu._04weibo.controller;
 
+import cn.tedu._04weibo.common.response.JsonResult;
+import cn.tedu._04weibo.common.response.StatusCode;
 import cn.tedu._04weibo.mapper.CommentMapper;
 import cn.tedu._04weibo.pojo.dto.CommentDTO;
 import cn.tedu._04weibo.pojo.entity.Comment;
@@ -26,22 +28,21 @@ public class CommentController {
 
     /**
      * 发布评论功能
-     *
      * @param commentDTO
      * @param session
      * @return 整型
      */
     @ApiOperation(value = "发布评论功能")
     @PostMapping("insert")
-    public int insert(@RequestBody CommentDTO commentDTO, @ApiIgnore HttpSession session) {
+    public JsonResult insert(@RequestBody CommentDTO commentDTO, @ApiIgnore HttpSession session){
         /*
             1.校验用户登录状态
             2.调用接口方法插入数据
             3.返回响应
          */
         UserVO userVO = (UserVO) session.getAttribute("user");
-        if (userVO == null) {//未登录,发布评论失败
-            return 2;
+        if (userVO == null){//未登录,发布评论失败
+            return new JsonResult(StatusCode.NOT_LOGIN);
         }
         //将评论相关数据存入 评论表 中
         Comment comment = new Comment();
@@ -52,22 +53,23 @@ public class CommentController {
         comment.setWeiboId(commentDTO.getId());
         commentMapper.insert(comment);
 
-        return 1;
+        return JsonResult.ok();
     }
 
     /**
      * 获取指定微博的所有评论
-     *
      * @param id 微博的id
      * @return List集合
      */
     @ApiOperation(value = "获取评论功能")
     @GetMapping("selectByWeiboId")
-    public List<CommentVO> selectByWeiboID(int id) {
+    public JsonResult selectByWeiboID(int id){
         /*
             1.调用接口方法
          */
-        return commentMapper.selectByWeiboId(id);
+        List<CommentVO> commentVOS = commentMapper.selectByWeiboId(id);
+
+        return JsonResult.ok(commentVOS);
     }
 
 }
